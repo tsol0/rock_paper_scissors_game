@@ -1,20 +1,18 @@
 import random
 
 def validate_integer():
-    number = 1
+    number = ""
     valid_number = False
     while valid_number != True:
-        number = input("please enter valid number")
+        number = input("Please enter valid number")
         if number.isnumeric():
             valid_number = True
-        
     return number
 
 
 def validate_tool(tools):
-    
     while valid_tool not in tools:
-        selected_tool = input('please enter either rock, paper or scissors')
+        selected_tool = input('Please enter either rock, paper or scissors')
         selected_tool = selected_tool.lower()
         if selected_tool in tools:
             valid_tool = True
@@ -55,14 +53,27 @@ def game():
 
     while winner_found != False:
         tools = ['rock', 'paper', 'scissors']
-        # score = [3,]
         player_tool = validate_tool(tools)
         comp_player_tool = random_tool(tools)
         
         player_score, comp_score = compare_tools(player_tool, comp_player_tool, tools)
         
         if  rounds == 1:
-            pass
+            winner_found = True
+            
+            if player_score > comp_score:
+                print("Player won!")
+            else:
+                print("Computer won")
+        else:
+            # if rounds is 3 than one of the player needs to win 2 out 3 to win 
+            # if rounds is 5 than a player needs to win 3 out of 5 to win
+            pass 
+
+if __name__ == "__main__":
+    game()
+    
+                
         
 
 
