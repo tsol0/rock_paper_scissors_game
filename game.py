@@ -4,15 +4,13 @@ import random
             
 def game():
     tools = ['rock', 'paper', 'scissors']
-    rounds = validate_integer()
-    winner_not_found = True
+    score_to_win = validate_integer()
+    winner_found = False
     player_score = 0
     comp_score = 0
     
-    print(f"{rounds}")
-    
 
-    while winner_not_found:
+    while winner_found != True:
         comp_player_tool = random_tool(tools)
         player_tool = validate_tool(tools)
         
@@ -20,30 +18,33 @@ def game():
         
         player_score, comp_score = compare_tools(player_tool, comp_player_tool, tools, comp_score, player_score)
         
-        print(f"Player score is {player_score}")
-        print(f"Computer score is {comp_score}")
+        print(f"Player score: {player_score} | Computer score: {comp_score}")
         
-        if  rounds == 1:
-            print(f"{rounds}")
-            winner_not_found = False
-            
-            if player_score > comp_score:
-                print("Player won!")
-            else:
-                print("Computer won!")
-        else:
-            continue
-            # if rounds is 3 than one of the player needs to win 2 out 3 to win 
-            # if rounds is 5 than a player needs to win 3 out of 5 to win
-            # pass 
+        
+        winner_found = check_for_winner(player_score, comp_score, score_to_win)
+    
+    print("The game has ended")
+    
+
+def check_for_winner(player_score, comp_score, score_to_win):
+    if player_score == score_to_win:
+        print("Player wins!!")
+        return True
+    elif comp_score == score_to_win:
+        print("Computer wins!!")
+        return True
+    return False
+        
 
 def validate_integer():
     while True:
-        user_input = input("Enter a numeric value: ")
-        if user_input.isdigit():
+        user_input = input("Enter the score a player needs to get to win: ")
+        if user_input == "":
+            return 1
+        elif user_input.isdigit():
             return int(user_input)
         else:
-            print("Invalid input. Please enter a numeric value.")
+            print("Invalid input. Please enter a valid number.")
 
 
 def validate_tool(tools):
@@ -60,24 +61,28 @@ def random_tool(tools):
     tool = tools[num]
     return tool
 
-def compare_tools(player_tool, comp_player_tool, tools, comp_score, player_score):
-        if (player_tool == comp_player_tool):
+
+def compare_tools(player_tool, comp_tool, tools, comp_score, player_score):
+        if (player_tool == comp_tool):
             print("draw")
-        elif (player_tool == tools[0]) and (comp_player_tool == tools[1]):
+        # this is the order of tools in the list ['rock', 'paper', 'scissors']
+        elif (player_tool == tools[0]) and (comp_tool == tools[1]):
             comp_score += 1
-        elif (player_tool == tools[1]) and (comp_player_tool == tools[2]):
-            comp_score += 1
-        elif (player_tool == tools[2]) and (comp_player_tool == tools[0]):
-            comp_score += 1
+        elif (player_tool == tools[0]) and (comp_tool == tools[2]):
+            player_score += 1
             
-        elif (player_tool == tools[0]) and (comp_player_tool == tools[2]):
+        elif (player_tool == tools[1]) and (comp_tool == tools[2]):
+            comp_score += 1
+        elif (player_tool == tools[1]) and (comp_tool == tools[0]):
             player_score += 1
-        elif (player_tool == tools[1]) and (comp_player_tool == tools[1]):
-            player_score += 1
-        elif (player_tool == tools[2]) and (comp_player_tool == tools[0]):
+            
+        elif (player_tool == tools[2]) and (comp_tool == tools[0]):
+            comp_score += 1
+        elif (player_tool == tools[2]) and (comp_tool == tools[1]):
             player_score += 1
         
         return player_score, comp_score
+   
     
 if __name__ == "__main__":
     game()
