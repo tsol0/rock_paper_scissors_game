@@ -12,6 +12,7 @@ def game():
 
     while winner_found != True:
         comp_player_tool = random_tool(tools)
+        
         player_tool = validate_tool(tools)
         
         print(f"Player selected {player_tool} and Computer selected {comp_player_tool}")
