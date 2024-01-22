@@ -26,6 +26,19 @@ class TestGameFunctions(unittest.TestCase):
         result = g.check_for_winner(player_score, comp_score, score_to_win)
         self.assertEqual(result, True)
         
+    def test_compare_tools_draw(self):
+        tools = ['rock', 'paper', 'scissors']
+        player_tool, comp_tool = "rock", "rock"
+        player_score, comp_score = 2, 1
+        result = g.compare_tools(player_tool, comp_tool, tools, comp_score, player_score)
+        self.assertEqual((result), (2,1))
+        
+    
+    # def test_compare_tools(self):
+    #     pass
+    
+    # def test_compare_tools(self):
+    #     pass
 
 if __name__ == '__main__':
     unittest.main()

@@ -66,6 +66,7 @@ def random_tool(tools):
 def compare_tools(player_tool, comp_tool, tools, comp_score, player_score):
         if (player_tool == comp_tool):
             print("draw")
+            return player_score, comp_score
         # this is the order of tools in the list ['rock', 'paper', 'scissors']
         elif (player_tool == tools[0]) and (comp_tool == tools[1]):
             comp_score += 1
