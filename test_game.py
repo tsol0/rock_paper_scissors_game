@@ -65,8 +65,21 @@ class TestGameFunctions(unittest.TestCase):
         self.assertEqual((result), (2,4)) 
         
         
-    def test_compare_tools(self):
-        pass
+    def test_compare_tools_update_comp_score(self):
+        tools = ['rock', 'paper', 'scissors']
+        
+        player_tool, comp_tool = "scissors", "rock"
+        player_score, comp_score = 2, 3
+        result = g.compare_tools(player_tool, comp_tool, tools, comp_score, player_score)
+        self.assertEqual((result), (2,4)) 
+        
+        player_score, comp_score = 2, 0
+        result = g.compare_tools(player_tool, comp_tool, tools, comp_score, player_score)
+        self.assertEqual((result), (2,1)) 
+        
+        player_score, comp_score = 0, 2
+        result = g.compare_tools(player_tool, comp_tool, tools, comp_score, player_score)
+        self.assertEqual((result), (0,3)) 
 
 if __name__ == '__main__':
     unittest.main()
