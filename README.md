@@ -1,3 +1,7 @@
 # rock_paper_scissors_game
 
-Rock, paper, scissors game between computer and user. The user can decide how many rounds the game should have.
+Description 
+This is a rock, paper and scissors game. You can play this to pass time. The game is between you and your computer.
+
+How to Play
+Run the command 
